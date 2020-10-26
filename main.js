@@ -4,6 +4,9 @@ var getMessageButton = document.querySelector("#get-message")
 var clearMessageButton = document.querySelector("#clear-message")
 var takeMeBackButton = document.querySelector("#take-me-back")
 
+var formPopup = document.querySelector(".form-popup")
+var userMessageForm = document.querySelector("#user-message-form")
+var userMessageInput = document.querySelector("#user-message-input")
 var openFormButton = document.querySelector("#open-form")
 var closeFormButton = document.querySelector("#close-form")
 var userAffirmationRadioButton = document.querySelector("#user-affirmation-button")
@@ -12,22 +15,23 @@ var submitUserMessageButton = document.querySelector("#submit-form")
 var cancelFormButton = document.querySelector("#cancel-form")
 
 var favoriteButton = document.querySelector("#favorite-button")
-var hideButton = document.querySelector("#hide-button")
 var viewFavoritesButton = document.querySelector("#view-favorites")
+var favoritesList = document.querySelector("#favorites-list")
+var showFavoritesHere = document.querySelector("#show-messages-here")
 
 var meditateIcon = document.querySelector("#medIcon")
-var topBoxContent = document.querySelector("#top-box")
+var topHalf = document.querySelector("#top-half")
+var bottomHalf = document.querySelector("#bottom-half")
 var bottomBoxContent = document.querySelector("#bottom-box")
 
 getMessageButton.addEventListener("click", getMessageType)
 favoriteButton.addEventListener("click", addToFavorites)
-hideButton.addEventListener("click", hideMessage)
 clearMessageButton.addEventListener("click", resetForm)
 openFormButton.addEventListener("click", openUserMessageForm)
 submitUserMessageButton.addEventListener("click", submitUserMessage)
 cancelFormButton.addEventListener("click", closeUserMessageForm)
 viewFavoritesButton.addEventListener("click", showFavoriteMessages)
-takeMeBackButton.addEventListener("click", goToMain)
+takeMeBackButton.addEventListener("click", takeMeBack)
 
 var defaultAffs = [
   "I forgive myself and set myself free.",
@@ -55,6 +59,43 @@ var favoriteMessages = [
   "the best message"
 ]
 
+function addToFavorites(showThisMessage) {
+  console.log(showThisMessage)
+  favoriteMessages.push(showThisMessage)
+  favoritesList.innerText = `${favoriteMessages}`
+  favoriteButton.classList.add("hidden")
+  resetForm()
+}
+
+function showFavoriteMessages() {
+  favoritesList.classList.remove("hidden")
+  topHalf.classList.add("hidden")
+  bottomHalf.classList.add("hidden")
+  openFormButton.classList.add("hidden")
+  formPopup.classList.add("hidden")
+  takeMeBackButton.classList.remove("hidden")
+  viewFavoritesButton.classList.add("hidden")
+  userMantraRadioButton.checked = false
+  userAffirmationRadioButton.checked = false
+  showFavoritesHere.innerText = `${favoriteMessages}`
+}
+
+function takeMeBack() {
+  favoritesList.classList.add("hidden")
+  viewFavoritesButton.classList.remove("hidden")
+  topHalf.classList.remove("hidden")
+  bottomHalf.classList.remove("hidden")
+  openFormButton.classList.remove("hidden")
+  bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
+  clearMessageButton.classList.add("hidden")
+  getMessageButton.classList.remove("disabled")
+  affirmationRadioButton.checked = false
+  mantraRadioButton.checked = false
+  getMessageButton.disabled = false
+  affirmationRadioButton.disabled = false
+  mantraRadioButton.disabled = false
+}
+
 function concatenateMessages(defaultMessages, userMessages) {
   return defaultMessages.concat(userMessages)
 }
@@ -77,6 +118,7 @@ function getRandomMessage(array) {
   var position = Math.floor(Math.random() * array.length);
   var showThisMessage = array[position]
   displayMessage(showThisMessage)
+  return array[position]
 }
 
 function displayMessage(showThisMessage) {
@@ -84,41 +126,13 @@ function displayMessage(showThisMessage) {
   bottomBoxContent.classList.add("message-text")
   bottomBoxContent.innerHTML = showThisMessage
   clearMessageButton.classList.add("clear-message-text")
-  // how to make clickable area only on the button
-  // even though the button doesn't exist until i put it in here
   clearMessageButton.innerHTML = `<button type="button" id="reset-button">Reset</button>`
   clearMessageButton.classList.remove("hidden")
   favoriteButton.classList.remove("hidden")
-  hideButton.classList.remove("hidden")
   getMessageButton.classList.add("disabled")
   getMessageButton.disabled = true
   mantraRadioButton.disabled = true
   affirmationRadioButton.disabled = true
-}
-
-function showFavoriteMessages() {
-  document.querySelector("#favorites-list").classList.remove("hidden")
-  document.querySelector("#top-half").classList.add("hidden")
-  document.querySelector("#bottom-half").classList.add("hidden")
-  viewFavoritesButton.classList.add("hidden")
-  document.querySelector("#user-mantra-button").checked = false
-  document.querySelector("#user-affirmation-button").checked = false
-  // add a back to main button
-}
-
-function addToFavorites(showThisMessage) {
-  favoriteMessages.push(showThisMessage)
-  document.querySelector("#favorites-list").innerText = `${favoriteMessages}`
-  resetForm()
-  hideButton.classList.add("hidden")
-  favoriteButton.classList.add("hidden")
-}
-
-function hideMessage(currentMessage) {
-  currentMessage.hide = true
-  resetForm()
-  hideButton.classList.add("hidden")
-  favoriteButton.classList.add("hidden")
 }
 
 function submitUserMessage() {
@@ -126,9 +140,9 @@ function submitUserMessage() {
   var isUserMantraChecked = document.querySelector("#user-mantra-button").checked;
   var isUserAffirmChecked = document.querySelector("#user-affirmation-button").checked;
   if (isUserAffirmChecked) {
-    userAffText.push(userMessage)
+    userAffs.push(userMessage)
   } else if (isUserMantraChecked) {
-    userManText.push(userMessage)
+    userMantras.push(userMessage)
   } else {
     alert("Please choose a message type.")
     return
@@ -137,39 +151,28 @@ function submitUserMessage() {
     alert("Please enter message text.")
     return
   }
-  document.querySelector("#user-message-form").classList.add("hidden")
-  document.querySelector("#top-half").classList.remove("hidden")
-  document.querySelector("#bottom-half").classList.remove("hidden")
+  userMessageForm.classList.add("hidden")
+  topHalf.classList.remove("hidden")
+  bottomHalf.classList.remove("hidden")
+  openFormButton.classList.remove("hidden")
   displayMessage(userMessage)
 }
 
 function openUserMessageForm() {
-  document.querySelector("#user-message-form").classList.remove("hidden")
-  document.querySelector("#top-half").classList.add("hidden")
-  document.querySelector("#bottom-half").classList.add("hidden")
+  userMessageForm.classList.remove("hidden")
+  topHalf.classList.add("hidden")
+  bottomHalf.classList.add("hidden")
   openFormButton.classList.add("hidden")
-  document.querySelector("#user-message-input").value = ""
-  document.querySelector("#user-mantra-button").checked = false
-  document.querySelector("#user-affirmation-button").checked = false
-  // hide favorites-list
+  userMessageInput.value = ""
+  userMantraRadioButton.checked = false
+  userAffirmationRadioButton.checked = false
 }
 
 function closeUserMessageForm() {
-  document.querySelector("#user-message-form").classList.add("hidden")
-  document.querySelector("#top-half").classList.remove("hidden")
-  document.querySelector("#bottom-half").classList.remove("hidden")
-}
-
-function goToMain() {
-  // hide favorites-popup
-  // display top-half
-  // display bottom-half
-  bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
-  clearMessageButton.classList.add("hidden")
-  getMessageButton.classList.remove("disabled")
-  getMessageButton.disabled = false
-  affirmationRadioButton.disabled = false
-  mantraRadioButton.disabled = false
+  userMessageForm.classList.add("hidden")
+  topHalf.classList.remove("hidden")
+  bottomHalf.classList.remove("hidden")
+  openFormButton.classList.remove("hidden")
 }
 
 function resetForm(messageTypeForm) {
@@ -179,6 +182,7 @@ function resetForm(messageTypeForm) {
   bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
   clearMessageButton.classList.add("hidden")
   getMessageButton.classList.remove("disabled")
+  favoriteButton.classList.add("hidden")
   getMessageButton.disabled = false
   affirmationRadioButton.disabled = false
   mantraRadioButton.disabled = false
