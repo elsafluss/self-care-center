@@ -12,7 +12,7 @@
       <div id="top-box">
         <form id="message-type">
           <div id="radio-buttons">
-            <input type="radio" name="message-choice" id="affirmation-button" value="affirmation">
+            <input type="radio" id="affirmation-button" name="message-choice" value="affirmation">
             <label for="affirmation-button" id="affirmation-label">affirmation</label>
             <input type="radio" id="mantra-button" name="message-choice" value="mantra">
             <label for="mantra-button" id="mantra-label">mantra</label>
@@ -35,6 +35,17 @@
     <article id="pop-up">
       <div>
         <button id="open-form">Add your own message</button>
+        <button id="view-favorites">View favorite messages</button>
+      </div>
+
+      <div class="favorites-popup hidden" id="favorites-list">
+        <h2 id="favorites-header">Your favorite messages</h2>
+
+          <section id="favorited-messages">
+            <p id="show-messages-here"></p>
+            <button id="take-me-back">take me back</button>
+          </section>
+        </div>
       </div>
 
       <div class="form-popup hidden" id="user-message-form">

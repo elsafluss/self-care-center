@@ -56,7 +56,7 @@ h2{
   text-align: center;
 }
 
-#affirmation-label {
+#affirmation-label{
   position: relative;
   margin-right: 20%;
   font-size: 2vw;
@@ -67,7 +67,7 @@ h2{
   font-style: normal;
 }
 
-#mantra-label {
+#mantra-label{
   position: relative;
   font-size: 2vw;
   margin: 0%;
@@ -78,11 +78,28 @@ h2{
   font-style: normal;
 }
 
-#get-message-button {
+#favorites-list {
+  display: flex;
+  width: 70%;
+  min-height: 100px;
+  justify-content: space-around;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: .1%;
+  margin-top: 3%;
+}
+
+#favorites-header {
+  color: #134d71
+}
+
+#get-message-button,
+#take-me-back {
   align-self: center;
 }
 
-#get-message {
+#get-message,
+#take-me-back {
   color: #ffffff;
   background: #134d71;
   border: solid 2px #134d71;
@@ -94,11 +111,13 @@ h2{
   font-size: 2vw;
 }
 
-#get-message:focus {
+#get-message:focus,
+#take-me-back:focus {
   outline: none;
 }
 
-#get-message:hover {
+#get-message:hover,
+#take-me-back:hover {
   color: #000000;
   background: #f7e4bf;
   border: solid 2px #78a7c6;
@@ -219,7 +238,8 @@ h2{
   justify-content: center;
 }
 
-#open-form{
+#open-form,
+#view-favorites{
   color: #ffffff;
   background: #134d71;
   border: solid 2px #134d71;
@@ -232,13 +252,15 @@ h2{
   margin-top: 5%;
 }
 
-#open-form:hover {
+#open-form:hover,
+#view-favorites:hover{
   color: #000000;
   background: #f7e4bf;
   border: solid 2px #78a7c6;
 }
 
-#open-form:focus {
+#open-form:focus,
+#view-favorites:focus {
   outline: none;
 }
 
