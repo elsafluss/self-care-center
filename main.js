@@ -1,29 +1,26 @@
-var affirmationRadioButton = document.querySelector("#affirmation-button")
-var mantraRadioButton = document.querySelector("#mantra-button")
-var getMessageButton = document.querySelector("#get-message")
-var clearMessageButton = document.querySelector("#clear-message")
-var takeMeBackButton = document.querySelector("#take-me-back")
+var affirmationChoice = document.querySelector("#affirmation-button")
+var mantraChoice = document.querySelector("#mantra-button")
+var getMessage = document.querySelector("#get-message")
+var clearMessage = document.querySelector("#clear-message")
 
-var formPopup = document.querySelector(".form-popup")
 var userMessageForm = document.querySelector("#user-message-form")
 var userMessageInput = document.querySelector("#user-message-input")
-var openFormButton = document.querySelector("#open-form")
-var closeFormButton = document.querySelector("#close-form")
-var userAffirmationRadioButton = document.querySelector("#user-affirmation-button")
-var userMantraRadioButton = document.querySelector("#user-mantra-button")
-var submitUserMessageButton = document.querySelector("#submit-form")
-var cancelFormButton = document.querySelector("#cancel-form")
+var openForm = document.querySelector("#open-form")
+var userFormAffirmation = document.querySelector("#user-affirmation-button")
+var userFormMantra = document.querySelector("#user-mantra-button")
+var userFormSubmit = document.querySelector("#submit-form")
+var userFormCancel = document.querySelector("#cancel-form")
 
 var meditateIcon = document.querySelector("#medIcon")
 var topHalf = document.querySelector("#top-half")
 var bottomHalf = document.querySelector("#bottom-half")
 var bottomBoxContent = document.querySelector("#bottom-box")
 
-getMessageButton.addEventListener("click", getMessageType)
-clearMessageButton.addEventListener("click", resetForm)
-openFormButton.addEventListener("click", openUserMessageForm)
-submitUserMessageButton.addEventListener("click", submitUserMessage)
-cancelFormButton.addEventListener("click", closeUserMessageForm)
+getMessage.addEventListener("click", getMessageType)
+clearMessage.addEventListener("click", resetForm)
+openForm.addEventListener("click", openUserMessageForm)
+userFormSubmit.addEventListener("click", submitUserMessage)
+userFormCancel.addEventListener("click", closeUserMessageForm)
 
 var defaultAffs = [
   "I forgive myself and set myself free.",
@@ -53,15 +50,15 @@ function takeMeBack() {
   viewFavoritesButton.classList.remove("hidden")
   topHalf.classList.remove("hidden")
   bottomHalf.classList.remove("hidden")
-  openFormButton.classList.remove("hidden")
+  openForm.classList.remove("hidden")
   bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
-  clearMessageButton.classList.add("hidden")
-  getMessageButton.classList.remove("disabled")
-  affirmationRadioButton.checked = false
-  mantraRadioButton.checked = false
-  getMessageButton.disabled = false
-  affirmationRadioButton.disabled = false
-  mantraRadioButton.disabled = false
+  clearMessage.classList.add("hidden")
+  getMessage.classList.remove("disabled")
+  affirmationChoice.checked = false
+  mantraChoice.checked = false
+  getMessage.disabled = false
+  affirmationChoice.disabled = false
+  mantraChoice.disabled = false
 }
 
 function concatenateMessages(defaultMessages, userMessages) {
@@ -93,13 +90,13 @@ function displayMessage(showThisMessage) {
   meditateIcon.classList.toggle("hidden")
   bottomBoxContent.classList.add("message-text")
   bottomBoxContent.innerHTML = showThisMessage
-  clearMessageButton.classList.add("clear-message-text")
-  clearMessageButton.innerHTML = `<button type="button" id="reset-button">Reset</button>`
-  clearMessageButton.classList.remove("hidden")
-  getMessageButton.classList.add("disabled")
-  getMessageButton.disabled = true
-  mantraRadioButton.disabled = true
-  affirmationRadioButton.disabled = true
+  clearMessage.classList.add("clear-message-text")
+  clearMessage.innerHTML = `<button type="button" id="reset-button">Reset</button>`
+  clearMessage.classList.remove("hidden")
+  getMessage.classList.add("disabled")
+  getMessage.disabled = true
+  mantraChoice.disabled = true
+  affirmationChoice.disabled = true
 }
 
 function submitUserMessage() {
@@ -121,7 +118,7 @@ function submitUserMessage() {
   userMessageForm.classList.add("hidden")
   topHalf.classList.remove("hidden")
   bottomHalf.classList.remove("hidden")
-  openFormButton.classList.remove("hidden")
+  openForm.classList.remove("hidden")
   displayMessage(userMessage)
 }
 
@@ -129,17 +126,17 @@ function openUserMessageForm() {
   userMessageForm.classList.remove("hidden")
   topHalf.classList.add("hidden")
   bottomHalf.classList.add("hidden")
-  openFormButton.classList.add("hidden")
+  openForm.classList.add("hidden")
   userMessageInput.value = ""
-  userMantraRadioButton.checked = false
-  userAffirmationRadioButton.checked = false
+  userFormMantra.checked = false
+  userFormAffirmation.checked = false
 }
 
 function closeUserMessageForm() {
   userMessageForm.classList.add("hidden")
   topHalf.classList.remove("hidden")
   bottomHalf.classList.remove("hidden")
-  openFormButton.classList.remove("hidden")
+  openForm.classList.remove("hidden")
 }
 
 function resetForm(messageTypeForm) {
@@ -147,9 +144,9 @@ function resetForm(messageTypeForm) {
   messageTypeForm[0].checked = false
   messageTypeForm[1].checked = false
   bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
-  clearMessageButton.classList.add("hidden")
-  getMessageButton.classList.remove("disabled")
-  getMessageButton.disabled = false
-  affirmationRadioButton.disabled = false
-  mantraRadioButton.disabled = false
+  clearMessage.classList.add("hidden")
+  getMessage.classList.remove("disabled")
+  getMessage.disabled = false
+  affirmationChoice.disabled = false
+  mantraChoice.disabled = false
 }
