@@ -234,7 +234,7 @@ h2 {
 }
 
 /* mobile screen */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   h1 {
     font-size: 6vw;
     margin-top: 10%;
@@ -270,7 +270,7 @@ h2 {
 }
 
 /* tablet screen */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 900px) {
   h1 {
     font-size: 6vw;
     margin-top: 10%;
@@ -315,7 +315,7 @@ h2 {
 }
 
 /* desktop screen */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1200px) {
   h1 {
     font-size: 6vw;
     margin-bottom: 0%
@@ -361,7 +361,7 @@ h2 {
 }
 
 /* very large screen */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1500px) {
     h1 {
       font-size: 6vw;
       margin-bottom: 0%
