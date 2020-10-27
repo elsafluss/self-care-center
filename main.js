@@ -11,6 +11,7 @@ var userFormMantra = document.querySelector("#user-mantra-button")
 var userFormSubmit = document.querySelector("#submit-form")
 var userFormCancel = document.querySelector("#cancel-form")
 
+var messageType = document.querySelector("#message-type")
 var meditateIcon = document.querySelector("#medIcon")
 var topHalf = document.querySelector("#top-half")
 var bottomHalf = document.querySelector("#bottom-half")
@@ -22,27 +23,38 @@ openForm.addEventListener("click", openUserMessageForm)
 userFormSubmit.addEventListener("click", submitUserMessage)
 userFormCancel.addEventListener("click", closeUserMessageForm)
 
-var defaultAffs = [
+var affirmations = [
   "I forgive myself and set myself free.",
   "I believe I can be all that I want to be.",
   "I am in the process of becoming the best version of myself.",
-  "I have the freedom and power to create the life I desire."
+  "I have the freedom and power to create the life I desire.",
+  "I choose to be kind to myself and love myself unconditionally.",
+  "My possibilities are endless.",
+  "I am worthy of my dreams.",
+  "I am enough.",
+  "I deserve to be healthy and feel good.",
+  "I am full of energy and vitality and my mind is calm and peaceful.",
+  "Every day I am getting healthier and stronger.",
+  "I honor my body by trusting the signals that it sends me.",
+  "I manifest perfect health by making smart choices."
 ]
-var userAffs = [
-  "aff user message 1",
-  "aff user message 2",
-  "aff user message 3",
-]
-var defaultMantras = [
+
+var mantras = [
   "I am enough.",
   "Every day is a second chance.",
   "Tell the truth and love everyone.",
-  "I am free from sadness."
-]
-var userMantras = [
-  "man user message 1",
-  "man user message 2",
-  "man user message 3",
+  "I am free from sadness.",
+  "Don’t let yesterday take up too much of today.",
+  "Breathing in , I send myself love.Breathing out, I send love to someone else who needs it.",
+  "In the beginning it is you, in the middle it is you and in the end it is you.",
+  "I love myself.",
+  "I am present now.",
+  "Inhale the future, exhale the past.",
+  "This too shall pass.",
+  "Yesterday is not today.",
+  "The only constant is change.",
+  "Onward and upward.",
+  "I am the sky, the rest is weather."
 ]
 
 function takeMeBack() {
@@ -61,18 +73,13 @@ function takeMeBack() {
   mantraChoice.disabled = false
 }
 
-function concatenateMessages(defaultMessages, userMessages) {
-  return defaultMessages.concat(userMessages)
-}
-
 function getMessageType() {
-  var isAffirmChecked = document.querySelector("#affirmation-button").checked;
-  var isMantraChecked = document.querySelector("#mantra-button").checked;
-  var combinedMessages = concatenateMessages(defaultAffs, userAffs)
+  var isAffirmChecked = affirmationChoice.checked;
+  var isMantraChecked = mantraChoice.checked;
   if (isAffirmChecked) {
-    var messageText = getRandomMessage(combinedMessages)
+    var messageText = getRandomMessage(affirmations)
   } else if (isMantraChecked) {
-    var messageText = getRandomMessage(combinedMessages)
+    var messageText = getRandomMessage(mantras)
   }
   if (!isMantraChecked && !isAffirmChecked) {
     alert("Please choose a message type.")
@@ -83,7 +90,6 @@ function getRandomMessage(array) {
   var position = Math.floor(Math.random() * array.length);
   var showThisMessage = array[position]
   displayMessage(showThisMessage)
-  return array[position]
 }
 
 function displayMessage(showThisMessage) {
@@ -100,13 +106,11 @@ function displayMessage(showThisMessage) {
 }
 
 function submitUserMessage() {
-  var userMessage = document.querySelector("#user-message-input").value
-  var isUserMantraChecked = document.querySelector("#user-mantra-button").checked;
-  var isUserAffirmChecked = document.querySelector("#user-affirmation-button").checked;
-  if (isUserAffirmChecked) {
-    userAffs.push(userMessage)
-  } else if (isUserMantraChecked) {
-    userMantras.push(userMessage)
+  var userMessage = userMessageInput.value
+  if (userFormAffirmation.checked) {
+    affirmations.push(userMessage)
+  } else if (userFormMantra.checked) {
+    mantras.push(userMessage)
   } else {
     alert("Please choose a message type.")
     return
@@ -140,7 +144,7 @@ function closeUserMessageForm() {
 }
 
 function resetForm(messageTypeForm) {
-  var messageTypeForm = document.querySelector("#message-type")
+  var messageTypeForm = messageType
   messageTypeForm[0].checked = false
   messageTypeForm[1].checked = false
   bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
