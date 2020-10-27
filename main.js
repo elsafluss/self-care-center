@@ -14,24 +14,16 @@ var userMantraRadioButton = document.querySelector("#user-mantra-button")
 var submitUserMessageButton = document.querySelector("#submit-form")
 var cancelFormButton = document.querySelector("#cancel-form")
 
-var favoriteButton = document.querySelector("#favorite-button")
-var viewFavoritesButton = document.querySelector("#view-favorites")
-var favoritesList = document.querySelector("#favorites-list")
-var showFavoritesHere = document.querySelector("#show-messages-here")
-
 var meditateIcon = document.querySelector("#medIcon")
 var topHalf = document.querySelector("#top-half")
 var bottomHalf = document.querySelector("#bottom-half")
 var bottomBoxContent = document.querySelector("#bottom-box")
 
 getMessageButton.addEventListener("click", getMessageType)
-favoriteButton.addEventListener("click", addToFavorites)
 clearMessageButton.addEventListener("click", resetForm)
 openFormButton.addEventListener("click", openUserMessageForm)
 submitUserMessageButton.addEventListener("click", submitUserMessage)
 cancelFormButton.addEventListener("click", closeUserMessageForm)
-viewFavoritesButton.addEventListener("click", showFavoriteMessages)
-takeMeBackButton.addEventListener("click", takeMeBack)
 
 var defaultAffs = [
   "I forgive myself and set myself free.",
@@ -55,30 +47,6 @@ var userMantras = [
   "man user message 2",
   "man user message 3",
 ]
-var favoriteMessages = [
-  "the best message"
-]
-
-function addToFavorites(showThisMessage) {
-  console.log(showThisMessage)
-  favoriteMessages.push(showThisMessage)
-  favoritesList.innerText = `${favoriteMessages}`
-  favoriteButton.classList.add("hidden")
-  resetForm()
-}
-
-function showFavoriteMessages() {
-  favoritesList.classList.remove("hidden")
-  topHalf.classList.add("hidden")
-  bottomHalf.classList.add("hidden")
-  openFormButton.classList.add("hidden")
-  formPopup.classList.add("hidden")
-  takeMeBackButton.classList.remove("hidden")
-  viewFavoritesButton.classList.add("hidden")
-  userMantraRadioButton.checked = false
-  userAffirmationRadioButton.checked = false
-  showFavoritesHere.innerText = `${favoriteMessages}`
-}
 
 function takeMeBack() {
   favoritesList.classList.add("hidden")
@@ -128,7 +96,6 @@ function displayMessage(showThisMessage) {
   clearMessageButton.classList.add("clear-message-text")
   clearMessageButton.innerHTML = `<button type="button" id="reset-button">Reset</button>`
   clearMessageButton.classList.remove("hidden")
-  favoriteButton.classList.remove("hidden")
   getMessageButton.classList.add("disabled")
   getMessageButton.disabled = true
   mantraRadioButton.disabled = true
@@ -182,7 +149,6 @@ function resetForm(messageTypeForm) {
   bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
   clearMessageButton.classList.add("hidden")
   getMessageButton.classList.remove("disabled")
-  favoriteButton.classList.add("hidden")
   getMessageButton.disabled = false
   affirmationRadioButton.disabled = false
   mantraRadioButton.disabled = false
