@@ -38,15 +38,15 @@ var affirmations = [
   "I honor my body by trusting the signals that it sends me.",
   "I manifest perfect health by making smart choices."
 ]
-
+var favoriteAffirmations = []
 var mantras = [
   "I am enough.",
   "Every day is a second chance.",
   "Tell the truth and love everyone.",
   "I am free from sadness.",
   "Don’t let yesterday take up too much of today.",
-  "Breathing in , I send myself love.Breathing out, I send love to someone else who needs it.",
-  "In the beginning it is you, in the middle it is you and in the end it is you.",
+  "Breathing in , I send myself love.",
+  "In the beginning, in the middle, and in the end it is you.",
   "I love myself.",
   "I am present now.",
   "Inhale the future, exhale the past.",
@@ -56,22 +56,24 @@ var mantras = [
   "Onward and upward.",
   "I am the sky, the rest is weather."
 ]
+var favoriteMantras = []
 
-function takeMeBack() {
-  favoritesList.classList.add("hidden")
-  viewFavoritesButton.classList.remove("hidden")
-  topHalf.classList.remove("hidden")
-  bottomHalf.classList.remove("hidden")
-  openForm.classList.remove("hidden")
-  bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
-  clearMessage.classList.add("hidden")
-  getMessage.classList.remove("disabled")
-  affirmationChoice.checked = false
-  mantraChoice.checked = false
-  getMessage.disabled = false
-  affirmationChoice.disabled = false
-  mantraChoice.disabled = false
-}
+bottomBoxContent.addEventListener("click", function () {
+  if (event.target.id = "the-heart") {
+    document.querySelector("#the-heart").classList.remove("unfavorited")
+    document.querySelector("#the-heart").classList.add("turn-red")
+    if (bottomBoxContent.parentElement.previousElementSibling.firstElementChild.firstElementChild.firstElementChild.firstElementChild.checked === true) {
+      favoriteAffirmations.push(document.querySelector(".message-text").innerText)
+    } else {
+      favoriteMantras.push(document.querySelector(".message-text").innerText)
+    }
+  }
+})
+
+// click the heart to remove it from the array it's in
+// omg fix line 65
+// add view favorites button that shows all favorited messages
+// if you click the heart again, it adds it to the array again. fix this.
 
 function getMessageType() {
   var isAffirmChecked = affirmationChoice.checked;
@@ -86,16 +88,11 @@ function getMessageType() {
   }
 }
 
-function getRandomMessage(array) {
-  var position = Math.floor(Math.random() * array.length);
-  var showThisMessage = array[position]
-  displayMessage(showThisMessage)
-}
-
 function displayMessage(showThisMessage) {
   meditateIcon.classList.toggle("hidden")
   bottomBoxContent.classList.add("message-text")
   bottomBoxContent.innerHTML = showThisMessage
+  bottomBoxContent.innerHTML += `<i class="fas fa-heart" id="the-heart"></i>`
   clearMessage.classList.add("clear-message-text")
   clearMessage.innerHTML = `<button type="button" id="reset-button">Reset</button>`
   clearMessage.classList.remove("hidden")
@@ -149,7 +146,30 @@ function resetForm(messageTypeForm) {
   messageTypeForm[1].checked = false
   bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
   clearMessage.classList.add("hidden")
+  // hide favorite button
   getMessage.classList.remove("disabled")
+  getMessage.disabled = false
+  affirmationChoice.disabled = false
+  mantraChoice.disabled = false
+}
+
+function getRandomMessage(array) {
+  var position = Math.floor(Math.random() * array.length);
+  var showThisMessage = array[position]
+  displayMessage(showThisMessage)
+}
+
+function takeMeBack() {
+  favoritesList.classList.add("hidden")
+  viewFavoritesButton.classList.remove("hidden")
+  topHalf.classList.remove("hidden")
+  bottomHalf.classList.remove("hidden")
+  openForm.classList.remove("hidden")
+  bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
+  clearMessage.classList.add("hidden")
+  getMessage.classList.remove("disabled")
+  affirmationChoice.checked = false
+  mantraChoice.checked = false
   getMessage.disabled = false
   affirmationChoice.disabled = false
   mantraChoice.disabled = false

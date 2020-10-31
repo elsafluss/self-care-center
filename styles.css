@@ -194,6 +194,14 @@ h2 {
   max-width: 15%;
 }
 
+.unfavorited {
+  color: blue;
+}
+
+.turn-red {
+  color: red!important;
+}
+
 #pop-up {
   display: flex;
   justify-content: center;
