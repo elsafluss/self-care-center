@@ -28,31 +28,27 @@ body {
 
 h1 {
   color: #ffffff;
-  font-size: 4vw;
-  margin: 2%;
+  font-size: 3.8vw;
   text-align: center;
 }
 
 h2 {
-  color: #ffffff;
+  color: #000000;
   font-size: 3vw;
   margin-left: 5%;
   margin-right: 5%;
   text-align: center;
 }
 
-#top-half {
+.message-choice {
   height: 70%;
   width: 60%;
-}
-
-#top-box {
   align-items: stretch;
   background-color: #ffffff;
   border-radius: 10px;
   display: flex;
   justify-content: space-around;
-  padding: 5%;
+  padding: 3%;
 }
 
 #radio-buttons {
@@ -96,69 +92,51 @@ h2 {
   font-style: normal;
 }
 
-#get-message-button,
+#get-message,
 #take-me-back {
   align-self: center;
 }
 
-#cancel-form,
-#get-message,
-#open-form,
-#reset-button,
-#submit-form,
-#take-me-back {
+button {
   background: #134d71;
   border: solid 2px #134d71;
   border-radius: 5px;
   color: #ffffff;
   font-size: 2vw;
-  margin-bottom: 5%;
-  margin-top: 5%;
+  margin-top: 10px;
   padding-bottom: 5px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 22px;
+  padding-right: 22px;
   padding-top: 5px;
 }
 
-#cancel-form:focus,
-#get-message:focus,
-#open-form:focus,
-#reset-button:focus,
-#submit-form:focus,
-#take-me-back:focus,
-#user-message-input:focus {
+button:focus {
   outline: none;
 }
 
-#cancel-form:hover,
-#get-message:hover,
-#open-form:hover,
-#reset-button:hover,
-#submit-form:hover,
-#take-me-back:hover {
+button:hover {
   background: #f7e4bf;
   border: solid 2px #78a7c6;
   color: #000000;
+  cursor: pointer;
 }
 
-#bottom-half {
+.display-message {
+  align-items: center;
   background-color: #ffffff;
   border-radius: 10px;
   display: flex;
-  justify-content: space-around;
+  height: auto;
+  justify-content: center;
   margin-top: 3%;
+  max-height: 200px;
   min-height: 100px;
   padding: .1%;
   width: 70%;
 }
 
-#bottom-box {
-  align-items: center;
-  display: flex;
-  height: auto;
-  justify-content: center;
-  max-height: 200px;
-  width: 70%;
+.scroll {
+  overflow: visible;
 }
 
 .message-text {
@@ -179,11 +157,6 @@ h2 {
   width: 70%;
 }
 
-#clear-message {
-  display: flex;
-  flex-direction: row;
-}
-
 #medIcon {
   border-radius: 10px;
   display: block;
@@ -202,7 +175,7 @@ h2 {
   color: red!important;
 }
 
-#pop-up {
+#message-display {
   display: flex;
   justify-content: center;
 }
@@ -240,176 +213,3 @@ h2 {
 #user-form-buttons {
   margin-bottom: 10%;
 }
-
-/* mobile screen */
-@media only screen and (max-width: 900px) {
-  h1 {
-    font-size: 6vw;
-    margin-top: 10%;
-  }
-  h2{
-    font-size: 4vw;
-  }
-  #affirmation-label {
-    font-size: 3.5vw;
-    margin-right: 10%;
-  }
-  #mantra-label {
-    font-size: 3.5vw;
-  }
-  #get-message{
-    font-size: 3vw;
-  }
-  .message-text{
-    font-size: 4vw;
-  }
-  #reset-button {
-    font-size: 3vw;
-  }
-  #bottom-half {
-    margin-top: 10%;
-  }
-  #message-choice-box{
-    margin-top: 5%;
-  }
-  #top-half{
-    margin-top: 5%;
-  }
-}
-
-/* tablet screen */
-@media only screen and (min-width: 900px) {
-  h1 {
-    font-size: 6vw;
-    margin-top: 10%;
-  }
-  h2{
-    font-size: 4vw;
-  }
-  #affirmation-label {
-    font-size: 3.5vw;
-    margin-right: 10%;
-  }
-  #mantra-label {
-    font-size: 3.5vw;
-  }
-  #get-message{
-    font-size: 3vw;
-  }
-  .message-text{
-    font-size: 4vw;
-  }
-  #reset-button {
-    font-size: 3vw;
-    margin: 5%;
-  }
-  #bottom-half {
-    margin-top: 3%;
-  }
-  #message-choice-box{
-    margin-top: 10%;
-  }
-  #top-half{
-    margin-top: 1%;
-  }
-  #affirmation-button{
-    height: 15px;
-    width: 15px;
-  }
-  #mantra-button{
-    height: 15px;
-    width: 15px;
-  }
-}
-
-/* desktop screen */
-@media only screen and (min-width: 1200px) {
-  h1 {
-    font-size: 6vw;
-    margin-bottom: 0%
-    margin-top: 5%;
-  }
-  h2{
-    font-size: 4vw;
-  }
-  #affirmation-label {
-    font-size: 3.5vw;
-    margin-right: 10%;
-  }
-  #mantra-label {
-    font-size: 3.5vw;
-  }
-  #get-message{
-    font-size: 3vw;
-  }
-  .message-text{
-    font-size: 4vw;
-  }
-  #reset-button {
-    font-size: 3vw;
-    margin: 5%;
-  }
-  #bottom-half {
-    margin-top: 5%;
-  }
-  #message-choice-box{
-    margin-top: 0;
-  }
-  #top-half{
-    margin-top: 0;
-  }
-  #affirmation-button{
-    height: 20px;
-    width: 20px;
-  }
-  #mantra-button{
-    height: 20px;
-    width: 20px;
-  }
-}
-
-/* very large screen */
-@media only screen and (min-width: 1500px) {
-    h1 {
-      font-size: 6vw;
-      margin-bottom: 0%
-      margin-top: 0%;
-    }
-    h2{
-      font-size: 4vw;
-    }
-    #affirmation-label {
-      font-size: 3.5vw;
-      margin-right: 10%;
-    }
-    #mantra-label {
-      font-size: 3.5vw;
-    }
-    #get-message{
-      font-size: 3vw;
-    }
-    .message-text{
-      font-size: 4vw;
-    }
-    #reset-button {
-      font-size: 3vw;
-      margin: 5%;
-    }
-    #bottom-half {
-      margin-top: 5%;
-    }
-    #message-choice-box{
-      margin-top: 0;
-    }
-    #top-half{
-      margin-top: 0;
-    }
-    #affirmation-button{
-      height: 20px;
-      width: 20px;
-    }
-    #mantra-button{
-      height: 20px;
-      width: 20px;
-    }
-  }

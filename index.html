@@ -8,30 +8,29 @@
   </head>
   <body>
     <h1>✨ Self Care Center ✨</h1>
-    <h2>Which type of message?</h2>
-    <article id="top-half">
-      <section id="top-box">
-        <form id="message-type">
-          <div id="radio-buttons">
-            <input type="radio" id="affirmation-button" name="message-choice" value="affirmation">
-            <label for="affirmation-button" id="affirmation-label">affirmation</label>
-            <input type="radio" id="mantra-button" name="message-choice" value="mantra">
-            <label for="mantra-button" id="mantra-label">mantra</label>
-          </div>
-        </form>
-        <div id="get-message-button">
-          <button id="get-message">Receive Message</button>
+    <article class="message-choice">
+      <h2>Which type of message?</h2>
+      <form id="message-type">
+        <div id="radio-buttons">
+          <input type="radio" id="affirmation-button" name="message-choice" value="affirmation">
+          <label for="affirmation-button" id="affirmation-label">affirmation</label>
+          <input type="radio" id="mantra-button" name="message-choice" value="mantra">
+          <label for="mantra-button" id="mantra-label">mantra</label>
         </div>
-      </section>
+      </form>
     </article>
-    <article id="bottom-half">
-      <section id="bottom-box">
-        <img src="./assets/meditate.svg" class="icon" id="medIcon" alt="meditation icon"></img>
-      </section>
-      <div id="clear-message"></div>
+      <span><button id="get-message">Receive Message</button>
+      <button class="back-to-home hidden" id="back-to-home"> Back to home</button></span>
+    <article class="display-message">
+      <img src="./assets/meditate.svg" class="icon" id="medIcon" alt="meditation icon"></img>
+
     </article>
-    <article id="pop-up">
-      <button id="open-form">Add your own message</button>
+
+    <article id="message-display">
+      <span><button id="open-form">Add a message</button>
+      <button id="view-favorites">View favorites</button>
+      <button class="hidden" id="clear-message">Clear message</button></span>
+
       <section class="form-popup hidden" id="user-message-form">
         <form action="/action_page.php" class="form-container">
           <div id="user-input-radio-buttons">
@@ -47,6 +46,7 @@
           </div>
         </form>
       </section>
+
     </article>
     <script type="text/javascript" src="messages.js"></script>
     <script type="text/javascript" src="main.js"></script>

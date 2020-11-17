@@ -1,7 +1,8 @@
 var affirmationChoice = document.querySelector("#affirmation-button")
 var mantraChoice = document.querySelector("#mantra-button")
 var getMessage = document.querySelector("#get-message")
-var clearMessage = document.querySelector("#clear-message")
+var clearMessageButton = document.querySelector("#clear-message")
+var backToHomeButton = document.querySelector(".back-to-home")
 
 var userMessageForm = document.querySelector("#user-message-form")
 var userMessageInput = document.querySelector("#user-message-input")
@@ -10,19 +11,24 @@ var userFormAffirmation = document.querySelector("#user-affirmation-button")
 var userFormMantra = document.querySelector("#user-mantra-button")
 var userFormSubmit = document.querySelector("#submit-form")
 var userFormCancel = document.querySelector("#cancel-form")
+var viewFavoriteMessages = document.querySelector("#view-favorites")
 
 var messageType = document.querySelector("#message-type")
 var meditateIcon = document.querySelector("#medIcon")
-var topHalf = document.querySelector("#top-half")
-var bottomHalf = document.querySelector("#bottom-half")
-var bottomBoxContent = document.querySelector("#bottom-box")
+var messageChoiceArea = document.querySelector(".message-choice")
+var messageDisplayArea = document.querySelector(".display-message")
+var messageTextDisplay = document.querySelector(".message-text")
 
 getMessage.addEventListener("click", getMessageType)
-clearMessage.addEventListener("click", resetForm)
+clearMessageButton.addEventListener("click", resetForm)
 openForm.addEventListener("click", openUserMessageForm)
 userFormSubmit.addEventListener("click", submitUserMessage)
 userFormCancel.addEventListener("click", closeUserMessageForm)
+viewFavoriteMessages.addEventListener("click", viewFavorites)
+messageDisplayArea.addEventListener("click", makeFavorite)
+backToHomeButton.addEventListener("click", goHome)
 
+var favoriteMessages = []
 var affirmations = [
   "I forgive myself and set myself free.",
   "I believe I can be all that I want to be.",
@@ -38,7 +44,6 @@ var affirmations = [
   "I honor my body by trusting the signals that it sends me.",
   "I manifest perfect health by making smart choices."
 ]
-var favoriteAffirmations = []
 var mantras = [
   "I am enough.",
   "Every day is a second chance.",
@@ -56,24 +61,40 @@ var mantras = [
   "Onward and upward.",
   "I am the sky, the rest is weather."
 ]
-var favoriteMantras = []
 
-bottomBoxContent.addEventListener("click", function () {
-  if (event.target.id = "the-heart") {
-    document.querySelector("#the-heart").classList.remove("unfavorited")
-    document.querySelector("#the-heart").classList.add("turn-red")
-    if (bottomBoxContent.parentElement.previousElementSibling.firstElementChild.firstElementChild.firstElementChild.firstElementChild.checked === true) {
-      favoriteAffirmations.push(document.querySelector(".message-text").innerText)
-    } else {
-      favoriteMantras.push(document.querySelector(".message-text").innerText)
-    }
+function goHome() {
+  backToHomeButton.classList.add("hidden")
+  messageChoiceArea.classList.remove("hidden")
+  meditateIcon.classList.remove("hidden")
+  messageDisplayArea.classList.remove("hidden")
+  clearMessageButton.classList.remove("hidden")
+}
+
+function makeFavorite(event) {
+  var theHeart = document.querySelector("#the-heart")
+  if (event.target.id === "the-heart") {
+    theHeart.classList.add("turn-red")
+    theHeart.classList.remove("unfavorited")
+    theHeart.classList.add("disabled")
+    favoriteMessages.push(document.querySelector(".message-text").innerText)
   }
-})
+}
 
-// click the heart to remove it from the array it's in
-// omg fix line 65
-// add view favorites button that shows all favorited messages
-// if you click the heart again, it adds it to the array again. fix this.
+function viewFavorites() {
+  if (event.target.id === "view-favorites") {
+    messageChoiceArea.classList.add("hidden")
+    document.querySelector("h2").classList.add("hidden")
+    viewFavoriteMessages.classList.add("hidden")
+    messageDisplayArea.classList.add("scroll")
+    for (var i = 0; i < favoriteMessages.length; i++) {
+      messageDisplayArea.innerHTML += `<p>${favoriteMessages[i]}</p>`
+    }
+    openForm.classList.add("hidden")
+    meditateIcon.classList.add("hidden")
+  } else if (event.target.id === "back-to-home") {
+    takeMeBack()
+  }
+}
 
 function getMessageType() {
   var isAffirmChecked = affirmationChoice.checked;
@@ -81,21 +102,24 @@ function getMessageType() {
   if (isAffirmChecked) {
     var messageText = getRandomMessage(affirmations)
   } else if (isMantraChecked) {
-    var messageText = getRandomMessage(mantras)
+    messageText = getRandomMessage(mantras)
   }
   if (!isMantraChecked && !isAffirmChecked) {
     alert("Please choose a message type.")
   }
 }
 
+
 function displayMessage(showThisMessage) {
   meditateIcon.classList.toggle("hidden")
-  bottomBoxContent.classList.add("message-text")
-  bottomBoxContent.innerHTML = showThisMessage
-  bottomBoxContent.innerHTML += `<i class="fas fa-heart" id="the-heart"></i>`
-  clearMessage.classList.add("clear-message-text")
-  clearMessage.innerHTML = `<button type="button" id="reset-button">Reset</button>`
-  clearMessage.classList.remove("hidden")
+  messageChoiceArea.classList.add("hidden")
+  getMessage.classList.add("hidden")
+  messageDisplayArea.classList.add("message-text")
+  messageDisplayArea.innerHTML = showThisMessage
+  messageDisplayArea.innerHTML += `<i class="fas fa-heart" id="the-heart"></i>`
+  backToHomeButton.disabled = false
+  backToHomeButton.classList.remove("disabled")
+  backToHomeButton.classList.remove("hidden")
   getMessage.classList.add("disabled")
   getMessage.disabled = true
   mantraChoice.disabled = true
@@ -117,16 +141,16 @@ function submitUserMessage() {
     return
   }
   userMessageForm.classList.add("hidden")
-  topHalf.classList.remove("hidden")
-  bottomHalf.classList.remove("hidden")
+  messageChoiceArea.classList.remove("hidden")
+  messageDisplayArea.classList.remove("hidden")
   openForm.classList.remove("hidden")
   displayMessage(userMessage)
 }
 
 function openUserMessageForm() {
   userMessageForm.classList.remove("hidden")
-  topHalf.classList.add("hidden")
-  bottomHalf.classList.add("hidden")
+  messageChoiceArea.classList.add("hidden")
+  messageDisplayArea.classList.add("hidden")
   openForm.classList.add("hidden")
   userMessageInput.value = ""
   userFormMantra.checked = false
@@ -135,22 +159,23 @@ function openUserMessageForm() {
 
 function closeUserMessageForm() {
   userMessageForm.classList.add("hidden")
-  topHalf.classList.remove("hidden")
-  bottomHalf.classList.remove("hidden")
+  messageChoiceArea.classList.remove("hidden")
+  messageDisplayArea.classList.remove("hidden")
   openForm.classList.remove("hidden")
 }
 
 function resetForm(messageTypeForm) {
-  var messageTypeForm = messageType
+  messageTypeForm = messageType
   messageTypeForm[0].checked = false
   messageTypeForm[1].checked = false
-  bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
-  clearMessage.classList.add("hidden")
+  messageDisplayArea.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
+  clearMessageButton.classList.add("hidden")
   // hide favorite button
   getMessage.classList.remove("disabled")
   getMessage.disabled = false
   affirmationChoice.disabled = false
   mantraChoice.disabled = false
+  getMessage.classList.remove("hidden")
 }
 
 function getRandomMessage(array) {
@@ -162,15 +187,14 @@ function getRandomMessage(array) {
 function takeMeBack() {
   favoritesList.classList.add("hidden")
   viewFavoritesButton.classList.remove("hidden")
-  topHalf.classList.remove("hidden")
-  bottomHalf.classList.remove("hidden")
+  messageChoiceArea.classList.remove("hidden")
+  messageDisplayArea.classList.remove("hidden")
   openForm.classList.remove("hidden")
-  bottomBoxContent.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
-  clearMessage.classList.add("hidden")
+  messageDisplayArea.innerHTML = `<img src="./assets/meditate.svg" id="medIcon" alt="meditation icon"></img>`
   getMessage.classList.remove("disabled")
-  affirmationChoice.checked = false
-  mantraChoice.checked = false
   getMessage.disabled = false
+  affirmationChoice.checked = false
   affirmationChoice.disabled = false
+  mantraChoice.checked = false
   mantraChoice.disabled = false
 }
