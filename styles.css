@@ -9,11 +9,6 @@ black - #000000; */
   display: none!important;
 }
 
-.disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
 * {
   align-items: center;
   flex-direction: column;
@@ -51,7 +46,7 @@ h2 {
   padding: 3%;
 }
 
-#radio-buttons {
+.radio-buttons {
   display: block;
   text-align: center;
   width: 100%;
@@ -92,7 +87,7 @@ h2 {
   font-style: normal;
 }
 
-#get-message,
+.get-message,
 #take-me-back {
   align-self: center;
 }
@@ -157,15 +152,15 @@ button:hover {
   width: 70%;
 }
 
-#medIcon {
-  border-radius: 10px;
-  display: block;
-  margin-bottom: 5%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  max-width: 15%;
-}
+/* .med-icon { */
+  /* border-radius: 10px; */
+  /* display: block; */
+  /* margin-bottom: 5%; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  /* margin-top: 5%; */
+  /* max-width: 40px; */
+/* } */
 
 .unfavorited {
   color: blue;
@@ -175,7 +170,7 @@ button:hover {
   color: red!important;
 }
 
-#message-display {
+.message-display {
   display: flex;
   justify-content: center;
 }

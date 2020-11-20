@@ -11,7 +11,7 @@
     <article class="message-choice">
       <h2>Which type of message?</h2>
       <form id="message-type">
-        <div id="radio-buttons">
+        <div class="radio-buttons">
           <input type="radio" id="affirmation-button" name="message-choice" value="affirmation">
           <label for="affirmation-button" id="affirmation-label">affirmation</label>
           <input type="radio" id="mantra-button" name="message-choice" value="mantra">
@@ -19,17 +19,16 @@
         </div>
       </form>
     </article>
-      <span><button id="get-message">Receive Message</button>
-      <button class="back-to-home hidden" id="back-to-home"> Back to home</button></span>
+      <span><button class="get-message">Receive Message</button>
+      <button class="back-to-home hidden"> Back to home</button></span>
     <article class="display-message">
-      <img src="./assets/meditate.svg" class="icon" id="medIcon" alt="meditation icon"></img>
 
     </article>
 
-    <article id="message-display">
-      <span><button id="open-form">Add a message</button>
-      <button id="view-favorites">View favorites</button>
-      <button class="hidden" id="clear-message">Clear message</button></span>
+    <article class="message-display">
+      <span><button class="open-form">Add a message</button>
+      <button class="view-favorites">View favorites</button>
+      <button class="hidden clear-message">Clear message</button></span>
 
       <section class="form-popup hidden" id="user-message-form">
         <form action="/action_page.php" class="form-container">
@@ -39,7 +38,7 @@
             <input type="radio" name="user-message-choice" id="user-mantra-button">
             <label for="user-mantra-button" id="user-mantra-label">mantra</label>
           </div>
-          <input type="text" id="user-message-input" placeholder="enter your message here">
+          <input type="text" id="user-message-input" placeholder=" enter your message here">
           <div id="user-form-buttons">
             <button type="button" name="submit-form" id="submit-form">submit</button>
             <button type="button" name="cancel-form" id="cancel-form">cancel</button>
