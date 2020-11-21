@@ -152,16 +152,6 @@ button:hover {
   width: 70%;
 }
 
-/* .med-icon { */
-  /* border-radius: 10px; */
-  /* display: block; */
-  /* margin-bottom: 5%; */
-  /* margin-left: auto; */
-  /* margin-right: auto; */
-  /* margin-top: 5%; */
-  /* max-width: 40px; */
-/* } */
-
 .unfavorited {
   color: blue;
 }
@@ -170,12 +160,7 @@ button:hover {
   color: red!important;
 }
 
-.message-display {
-  display: flex;
-  justify-content: center;
-}
-
-#user-message-form {
+.user-message-form {
   display: flex;
   justify-content: center;
 }
@@ -191,7 +176,7 @@ button:hover {
   width: 150%;
 }
 
-#user-input-radio-buttons {
+.user-input-radio-buttons {
   display: block;
   margin-bottom: 5%;
   margin-top: 5%;

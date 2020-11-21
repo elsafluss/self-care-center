@@ -8,6 +8,7 @@
   </head>
   <body>
     <h1>✨ Self Care Center ✨</h1>
+
     <article class="message-choice">
       <h2>Which type of message?</h2>
       <form id="message-type">
@@ -19,20 +20,24 @@
         </div>
       </form>
     </article>
-      <span><button class="get-message">Receive Message</button>
-      <button class="back-to-home hidden"> Back to home</button></span>
-    <article class="display-message">
 
+      <span>
+        <button class="get-message">Receive Message</button>
+        <button class="back-to-home hidden"> Back to home</button>
+      </span>
+
+    <article class="display-message">
     </article>
 
-    <article class="message-display">
-      <span><button class="open-form">Add a message</button>
-      <button class="view-favorites">View favorites</button>
-      <button class="hidden clear-message">Clear message</button></span>
+      <span>
+        <button class="open-form">Add a message</button>
+        <button class="view-favorites">View favorites</button>
+        <button class="hidden clear-message">Clear message</button>
+      </span>
 
-      <section class="form-popup hidden" id="user-message-form">
+      <section class="form-popup hidden" class="user-message-form">
         <form action="/action_page.php" class="form-container">
-          <div id="user-input-radio-buttons">
+          <div class="user-input-radio-buttons">
             <input type="radio" name="user-message-choice" id="user-affirmation-button">
             <label for="user-affirmation-button" id="user-affirmation-label">affirmation</label>
             <input type="radio" name="user-message-choice" id="user-mantra-button">
@@ -46,7 +51,6 @@
         </form>
       </section>
 
-    </article>
     <script type="text/javascript" src="messages.js"></script>
     <script type="text/javascript" src="main.js"></script>
   </body>

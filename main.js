@@ -4,7 +4,7 @@ var getMessage = document.querySelector(".get-message")
 var clearMessageButton = document.querySelector(".clear-message")
 var backToHomeButton = document.querySelector(".back-to-home")
 
-var userMessageForm = document.querySelector("#user-message-form")
+var userMessageForm = document.querySelector(".user-message-form")
 var userMessageInput = document.querySelector("#user-message-input")
 var openForm = document.querySelector(".open-form")
 var userFormAffirmation = document.querySelector("#user-affirmation-button")
@@ -60,11 +60,11 @@ var mantras = [
   "I am the sky, the rest is weather."
 ]
 
-function showButton(button) {
+function showElement(button) {
   button.classList.remove("hidden")
 }
 
-function hideButton(button) {
+function hideElement(button) {
   button.classList.add("hidden")
 }
 
@@ -74,10 +74,10 @@ function changeRadioButton(button, newValue) {
 }
 
 function goHome() {
-  showButton(messageChoiceArea)
-  showButton(messageDisplayArea)
-  showButton(clearMessageButton)
-  hideButton(backToHomeButton)
+  showElement(messageChoiceArea)
+  showElement(messageDisplayArea)
+  showElement(clearMessageButton)
+  hideElement(backToHomeButton)
 }
 
 function makeFavorite(event) {
@@ -92,16 +92,19 @@ function makeFavorite(event) {
 
 function viewFavorites() {
   if (event.target.className === "view-favorites") {
-    hideButton(messageChoiceArea)
-    hideButton(openForm)
-    hideButton(viewFavoriteMessages)
+    hideElement(messageChoiceArea)
+    hideElement(openForm)
+    hideElement(viewFavoriteMessages)
+    hideElement(getMessage)
+    showElement(backToHomeButton)
     document.querySelector("h2").classList.add("hidden")
     messageDisplayArea.classList.add("scroll")
     for (var i = 0; i < favoriteMessages.length; i++) {
       messageDisplayArea.innerHTML += `<p>${favoriteMessages[i]}</p>`
     }
   } else if (event.target.id === "back-to-home") {
-    takeMeBack()
+    // takeMeBack()
+    resetForm()
   }
 }
 
@@ -119,9 +122,9 @@ function getMessageType() {
 }
 
 function displayMessage(showThisMessage) {
-  showButton(backToHomeButton)
-  hideButton(messageChoiceArea)
-  hideButton(getMessage)
+  showElement(backToHomeButton)
+  hideElement(messageChoiceArea)
+  hideElement(getMessage)
   messageDisplayArea.classList.add("message-text")
   messageDisplayArea.innerHTML = showThisMessage
   messageDisplayArea.innerHTML += `<i class="fas fa-heart" id="the-heart"></i>`
@@ -141,40 +144,39 @@ function submitUserMessage() {
     alert("Please enter message text.")
     return
   }
-  showButton(messageChoiceArea)
-  showButton(messageDisplayArea)
-  showButton(openForm)
-  hideButton(userMessageForm)
+  showElement(messageChoiceArea)
+  showElement(messageDisplayArea)
+  showElement(openForm)
+  hideElement(userMessageForm)
   displayMessage(userMessage)
 }
 
 function openUserMessageForm() {
-  showButton(userMessageForm)
-  hideButton(messageChoiceArea)
-  hideButton(messageDisplayArea)
-  hideButton(viewFavoriteMessages)
-  hideButton(getMessage)
-  hideButton(openForm)
+  showElement(userMessageForm)
+  hideElement(messageChoiceArea)
+  hideElement(messageDisplayArea)
+  hideElement(viewFavoriteMessages)
+  hideElement(getMessage)
+  hideElement(openForm)
   userMessageInput.value = ""
   userFormMantra.checked = false
   userFormAffirmation.checked = false
 }
 
 function closeUserMessageForm() {
-  showButton(messageChoiceArea)
-  showButton(messageDisplayArea)
-  showButton(openForm)
-  hideButton(userMessageForm)
+  showElement(messageChoiceArea)
+  showElement(messageDisplayArea)
+  showElement(openForm)
+  hideElement(userMessageForm)
 }
 
-function resetForm(messageTypeForm) {
-  showButton(getMessage)
-  hideButton(clearMessageButton)
+function resetForm() {
+  showElement(getMessage)
+  hideElement(clearMessageButton)
   changeRadioButton(affirmationChoice, false)
   changeRadioButton(mantraChoice, false)
   messageDisplayArea.classList.remove("message-text")
   messageDisplayArea.innerText = ""
-  // hide favorite button
 }
 
 function getRandomMessage(array) {
@@ -184,11 +186,11 @@ function getRandomMessage(array) {
 }
 
 function takeMeBack() {
-  showButton(viewFavoritesButton)
-  showButton(messageChoiceArea)
-  showButton(messageDisplayArea)
-  showButton(openForm)
-  hideButton(favoritesList)
+  showElement(viewFavoritesButton)
+  showElement(messageChoiceArea)
+  showElement(messageDisplayArea)
+  showElement(openForm)
+  hideElement(favoritesList)
   changeRadioButton(affirmationChoice, false)
   changeRadioButton(mantraChoice, false)
 }
